@@ -1,0 +1,30 @@
+{
+  "name": "template-angular",
+  "version": "0.1.0",
+  "description": "template-angular",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.5.1",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "angular": "^1.5.6",
+    "angular-mocks": "^1.5.7",
+    "body-parser": "^1.15.2",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "webpack-stream": "^3.2.0"
+  }
+}
