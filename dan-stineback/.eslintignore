@@ -5,4 +5,7 @@
 /package.json
 /npm-debug.log
 /procfile
-/build/*
+/build/**
+**/bundle/*
+karma.*
+**/test/*_bundle
