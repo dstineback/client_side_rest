@@ -1,6 +1,13 @@
 # application specific
 build/*
 /db
+/npm-debug.log
+/procfile
+/build/**
+**/bundle/*
+karma.*
+**/test/*_bundle
+
 
 # Created by https://www.gitignore.io/api/node,osx,vim
 
