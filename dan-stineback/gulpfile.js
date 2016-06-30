@@ -12,7 +12,7 @@ gulp.task('clean', ()=>{
 });
 
 gulp.task('copy-html', ['clean'], ()=>{
-  return gulp.src('index.html')
+  return gulp.src('./app/index.html')
     .pipe(gulp.dest('./build'));
 });
 
