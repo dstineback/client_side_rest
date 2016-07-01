@@ -6,16 +6,19 @@
   </head>
   <body ng-app="CatDogApp">
     <main>
+
       <section ng-controller="AnimalController as catsctrl" ng-init="catsctrl.getCats()">
         <h1>{{catsctrl.catTitle}}</h1>
         <cat-list cats="catsctrl.cats"></cat-list>
         <new-animal-form type="new" animal="{}" species="cats" ></new-animal-form>
       </section>
+
       <section ng-controller="AnimalController as dogsctrl" ng-init="dogsctrl.getDogs()">
       <h1>{{dogsctrl.dogTitle}}</h1>
       <dog-list dogs="dogsctrl.dogs"></dog-list>
       <new-animal-form type="new" animal="{}" species="dogs"></new-animal-form>
       </section>
+
     </main>
     <script src="./bundle.js"></script>
   </body>
