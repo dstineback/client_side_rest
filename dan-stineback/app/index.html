@@ -6,41 +6,19 @@
   </head>
   <body ng-app="CatDogApp">
     <main>
-      <section ng-controller="CatsController as catsctrl" ng-init="catsctrl.getCats()">
+
+      <section ng-controller="AnimalController as catsctrl" ng-init="catsctrl.getCats()">
         <h1>{{catsctrl.catTitle}}</h1>
-        <ul>
-          <li ng-repeat="cat in catsctrl.cats">
-            {{cat.name}}
-            <button ng-click="cat.editing = !cat.editing">Edit</button>
-            <form ng-hide="!cat.editing" ng-submit="catsctrl.updateCat(cat, updatedCat)">
-              <input type="text" ng-model="updatedCat.name"/>
-              <button type="submit">update cat</button>
-              <button ng-click="catsctrl.deleteCat(cat)">Delete</button>
-            </form>
-          </li>
-        </ul>
-        <form ng-submit="catsctrl.addCat()">
-          <input ng-model="catsctrl.newCat.name" type="text"/>
-          <button type="submit">New Cat</button>
-        </form>
+        <cat-list cats="catsctrl.cats"></cat-list>
+        <new-animal-form type="new" animal="{}" species="cats" ></new-animal-form>
       </section>
-      <section ng-controller="DogsController as dogsctrl" ng-init="dogsctrl.getDogs()">
-        <h1>{{dogsctrl.dogTitle}}</h1>
-        <ul>
-          <li ng-repeat="dog in dogsctrl.dogs">
-            {{dog.name}}
-            <button ng-click="dog.editing = !dog.editing">Edit</button>
-            <form ng-hide="!dog.editing" ng-submit="dogsctrl.updateDog(dog, updatedDog)">
-              <input type="text" ng-model="updatedDog.name"/>
-              <button type="submit">update dog</button>
-              <button ng-click="dogsctrl.deleteDog(dog)">Delete</button>
-            </form>
-        </ul>
-        <form ng-submit="dogsctrl.addDog()">
-          <input ng-model="dogsctrl.newDog.name" type="text"/>
-          <button type="submit">New Dog</button>
-        </form>
+
+      <section ng-controller="AnimalController as dogsctrl" ng-init="dogsctrl.getDogs()">
+      <h1>{{dogsctrl.dogTitle}}</h1>
+      <dog-list dogs="dogsctrl.dogs"></dog-list>
+      <new-animal-form type="new" animal="{}" species="dogs"></new-animal-form>
       </section>
+
     </main>
     <script src="./bundle.js"></script>
   </body>

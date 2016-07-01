@@ -16,7 +16,7 @@ describe('controller tests', ()=>{
   beforeEach(()=>{
     angular.mock.module('CatDogApp');
     angular.mock.inject(function($controller, _$httpBackend_){
-      catsctrl = new $controller('CatsController');
+      catsctrl = new $controller('AnimalController');
       $httpBackend = _$httpBackend_;
     });
   });
