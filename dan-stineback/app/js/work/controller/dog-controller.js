@@ -4,7 +4,6 @@ module.exports = function(app) {
   app.controller('DogsController',function($http){
 
     this.dogTitle = 'Make a new Dog';
-    this.$http = $http;
     this.dogs = [];
 
     this.getDogs = function() {

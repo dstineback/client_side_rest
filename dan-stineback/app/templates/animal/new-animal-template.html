@@ -1,8 +1,8 @@
 
 <form ng-submit="submit(animal)">
   <h3>{{formMessage}}</h3>
-  <input placeholder="name" type="text" ng-model="animal.name">
-  <input placeholder="number" type="text" ng-model="animal.age">
+  <input placeholder="new name" type="text" ng-model="animal.name">
+  <input placeholder="animal age" type="text" ng-model="animal.age">
   <button type="submit" ng-click="update(animal)">{{type}} animal</button>
   <button ng-show="type === 'edit'" ng-click="delete(animal)">Delete animal</button>
 </form>

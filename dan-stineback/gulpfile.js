@@ -12,13 +12,13 @@ gulp.task('clean', ()=>{
 });
 
 gulp.task('copy-html', ['clean'], ()=>{
-  return gulp.src('./app/index.html')
+  return gulp.src('./app/**/*.html')
     .pipe(gulp.dest('./build'));
 });
 
 
 gulp.task('bundle', ['clean'], ()=>{
-  return gulp.src('./app/js/client.js')
+  return gulp.src('./app/js/**/*.js')
     .pipe(webpack({
       output: {
         filename: 'bundle.js'

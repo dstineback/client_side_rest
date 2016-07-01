@@ -5,7 +5,7 @@ module.exports = function(app) {
       scope: {
         cats: '='
       },
-      templateUrl: './templates/animal/cat_list.html'
+      templateUrl: './templates/animal/cat-list.html'
     };
   });
 };

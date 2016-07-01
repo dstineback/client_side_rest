@@ -5,7 +5,7 @@ module.exports = function(app) {
       scope: {
         dogs: '='
       },
-      templateUrl: './templates/animal/dog_list.html'
+      templateUrl: './templates/animal/dog-list.html'
     };
   });
 };
