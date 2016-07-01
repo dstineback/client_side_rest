@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('CatsController', function($http){
+  app.controller('AnimalController', function($http){
     this.catTitle = 'Make a new Cat';
     // this.$http = $http;
     this.cats = [];
