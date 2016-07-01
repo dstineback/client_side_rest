@@ -27,11 +27,12 @@
           <button type="submit">New Cat</button>
         </form> -->
       </section>
-      <!-- <section ng-controller="DogsController as dogsctrl" ng-init="dogsctrl.getDogs()">
-        <h1>{{dogsctrl.dogTitle}}</h1>
-        <dog-list dogs="animals.dogs"></dog-list>
-        <new-animal-form type="new" animal="{}" species="dogs"></new-animal-form>
-        <!-<ul>
+      <section ng-controller="CatsController as dogsctrl" ng-init="dogsctrl.getDogs()">
+
+      <h1>{{dogsctrl.dogTitle}}</h1>
+      <dog-list dogs="dogsctrl.dogs"></dog-list>
+      <new-animal-form type="new" animal="{}" species="dogs"></new-animal-form> 
+        <!-- <!-<ul>
           <li ng-repeat="dog in dogsctrl.dogs">
             {{dog.name}}
             <button ng-click="dog.editing = !dog.editing">Edit</button>
@@ -45,7 +46,7 @@
           <input ng-model="dogsctrl.newDog.name" type="text"/>
           <button type="submit">New Dog</button>
         </form> -->
-      <!-- </section> --> -->
+      </section>
     </main>
     <script src="./bundle.js"></script>
   </body>

@@ -55,7 +55,7 @@ module.exports = function(app) {
     this.dogs = [];
 
     this.getDogs = function() {
-      this.$http.get('http://localhost:3000/dogs')
+      $http.get('http://localhost:3000/dogs')
         .then((res) => {
           this.dogs = res.data;
         }, (err) => {
@@ -63,8 +63,8 @@ module.exports = function(app) {
         });
     };
 
-    this.addDog = function() {
-      this.$http.post('http://localhost:3000/dogs', this.newDog)
+    this.addDog = function(dog) {
+      $http.post('http://localhost:3000/dogs', dog)
         .then((res) => {
           this.dogs.push(res.data);
           this.newDog = null;
@@ -74,7 +74,7 @@ module.exports = function(app) {
     }.bind(this);
 
     this.deleteDog = function(dog) {
-      this.$http.delete('http://localhost:3000/dogs/' + dog._id)
+      $http.delete('http://localhost:3000/dogs/' + dog._id)
         .then(() => {
           let index = this.dogs.indexOf(dog);
           this.dogs.splice(index, 1);
@@ -84,10 +84,10 @@ module.exports = function(app) {
     }.bind(this);
 
 
-    this.updateDog = function(dog, updatedDog) {
-      dog.name = updatedDog.name;
+    this.updateDog = function(dog) {
+      // dog.name = updatedDog.name;
 
-      this.$http.put('http://localhost:3000/dogs', dog)
+      $http.put('http://localhost:3000/dogs', dog)
         .then(() => {
           this.dogs = this.dogs.map(n => {
             return n._id === dog._id ? dog : n;
