@@ -15,7 +15,7 @@ module.exports = function(app) {
         .then((res) => {
           this.cats = res.data;
 
-        }, ErrorService.logErorr('Error No Cats'));
+        }, ErrorService.logError('Error No Cats'));
     };
 
     this.addCat = function(cat) {
@@ -23,7 +23,7 @@ module.exports = function(app) {
         .then((res) => {
           this.cats.push(res.data);
           this.cat = null;
-        }, ErrorService.logErorr('Error could not make a Cat'));
+        }, ErrorService.logError('Error could not make a Cat'));
     }.bind(this);
 
     this.deleteCat = function(cat) {
