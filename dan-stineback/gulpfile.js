@@ -4,10 +4,7 @@ const gulp = require('gulp');
 const webpack = require('webpack-stream');
 const clean = require('gulp-clean');
 
-const paths = {
-  js: __dirname + '/app/**/*.js',
-  html: __dirname + '/app/index.html'
-};
+
 
 gulp.task('clean', ()=>{
   return gulp.src('./build/*', {read:false})
@@ -15,17 +12,13 @@ gulp.task('clean', ()=>{
 });
 
 gulp.task('copy-html', ['clean'], ()=>{
-  return gulp.src(paths.html)
+  return gulp.src('./app/**/*.html')
     .pipe(gulp.dest('./build'));
 });
 
-gulp.task('copy-css', ['clean'], ()=>{
-  return gulp.src(paths.css)
-    .pipe(gulp.dest('./build'));
-});
 
 gulp.task('bundle', ['clean'], ()=>{
-  return gulp.src(paths.js)
+  return gulp.src('./app/js/**/*.js')
     .pipe(webpack({
       output: {
         filename: 'bundle.js'
