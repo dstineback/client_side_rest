@@ -6,7 +6,7 @@ require('../app/js/client');
 describe('error service tests', function() {
   let errorService;
   beforeEach(() => {
-    angular.mock.module('FirstApp');
+    angular.mock.module('CatDogApp');
     angular.mock.inject(function(ErrorService){
       errorService = ErrorService;
     });

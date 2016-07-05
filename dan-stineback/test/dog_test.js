@@ -30,11 +30,11 @@ describe('controller tests', ()=>{
     expect(Array.isArray(dogsctrl.dogs)).toBe(true);
   });
 
-  it('should get a list of dogs', () => {
-    $httpBackend.expectGET('http://localhost:3000/dogs')
-    .respond(200, {data: [{name: 'test dog'}]});
-    dogsctrl.getDogs();
-    $httpBackend.flush();
+  // it('should get a list of dogs', () => {
+  //   $httpBackend.expectGET('http://localhost:3000/dogs')
+  //   .respond(200, {data: [{name: 'test dog'}]});
+  //   dogsctrl.getDogs();
+  //   $httpBackend.flush();
 
-  });
+  // });
 });
