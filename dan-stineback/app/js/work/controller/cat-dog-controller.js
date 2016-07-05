@@ -1,7 +1,11 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('AnimalController', function($http, ErrorService){
+  app.controller('AnimalController', ['$http', 'ErrorService', AnimalController]);
+
+  function AnimalController($http, ErrorService){
+
+    this.$http = $http;
     this.catTitle = 'Make a new Cat';
     // this.$http = $http;
     this.cats = [];
@@ -81,5 +85,5 @@ module.exports = function(app) {
         }, ErrorService.logError('Error could not update Dog'));
     }.bind(this);
 
-  });
+  }
 };
