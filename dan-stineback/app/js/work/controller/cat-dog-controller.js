@@ -58,7 +58,7 @@ module.exports = function(app) {
         .then((res) => {
           this.dogs.push(res.data);
           this.newDog = null;
-        }, ErrorService.logError('Erro could not make a Dog'));
+        }, ErrorService.logError('Error could not make a Dog'));
     }.bind(this);
 
     this.deleteDog = function(dog) {
@@ -66,7 +66,7 @@ module.exports = function(app) {
         .then(() => {
           let index = this.dogs.indexOf(dog);
           this.dogs.splice(index, 1);
-        }, ErrorService.logError('Erro could not delete Dog'));
+        }, ErrorService.logError('Error could not delete Dog'));
     }.bind(this);
 
 
@@ -78,7 +78,7 @@ module.exports = function(app) {
           this.dogs = this.dogs.map(n => {
             return n._id === dog._id ? dog : n;
           });
-        }, ErrorService.logError('Erro could not update Dog'));
+        }, ErrorService.logError('Error could not update Dog'));
     }.bind(this);
 
   });
