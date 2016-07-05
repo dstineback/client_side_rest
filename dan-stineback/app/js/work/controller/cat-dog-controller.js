@@ -19,9 +19,7 @@ module.exports = function(app) {
         .then((res) => {
           this.cats.push(res.data);
           this.cat = null;
-        }, (err) => {
-          console.log(err);
-        });
+        }, ErrorService.logErorr('Error could not make a Cat'));
     }.bind(this);
 
     this.deleteCat = function(cat) {
@@ -29,9 +27,7 @@ module.exports = function(app) {
         .then(() => {
           let index = this.cats.indexOf(cat);
           this.cats.splice(index, 1);
-        }, (err) => {
-          console.log(err);
-        });
+        }, ErrorService.logError('Error Could not Delete Cat'));
     }.bind(this);
 
     this.updateCat = function(cat) {
@@ -42,9 +38,7 @@ module.exports = function(app) {
           this.cats = this.cats.map(n => {
             return n._id === cat._id ? cat : n;
           });
-        }, (err) => {
-          console.log(err);
-        });
+        }, ErrorService.logError('Error could not update Cat'));
     }.bind(this);
 
 // dog controller
@@ -56,9 +50,7 @@ module.exports = function(app) {
       $http.get('http://localhost:3000/dogs')
         .then((res) => {
           this.dogs = res.data;
-        }, (err) => {
-          console.log(err);
-        });
+        }, ErrorService.logError('Error could not find Dog'));
     };
 
     this.addDog = function(dog) {
@@ -66,9 +58,7 @@ module.exports = function(app) {
         .then((res) => {
           this.dogs.push(res.data);
           this.newDog = null;
-        }, (err) => {
-          console.log(err);
-        });
+        }, ErrorService.logError('Erro could not make a Dog'));
     }.bind(this);
 
     this.deleteDog = function(dog) {
@@ -76,9 +66,7 @@ module.exports = function(app) {
         .then(() => {
           let index = this.dogs.indexOf(dog);
           this.dogs.splice(index, 1);
-        }, (err) => {
-          console.log(err);
-        });
+        }, ErrorService.logError('Erro could not delete Dog'));
     }.bind(this);
 
 
@@ -90,9 +78,7 @@ module.exports = function(app) {
           this.dogs = this.dogs.map(n => {
             return n._id === dog._id ? dog : n;
           });
-        }, (err) => {
-          console.log(err);
-        });
+        }, ErrorService.logError('Erro could not update Dog'));
     }.bind(this);
 
   });
