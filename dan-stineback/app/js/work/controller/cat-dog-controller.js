@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('AnimalController', function($http){
+  app.controller('AnimalController', function($http, ErrorService){
     this.catTitle = 'Make a new Cat';
     // this.$http = $http;
     this.cats = [];
@@ -11,9 +11,7 @@ module.exports = function(app) {
         .then((res) => {
           this.cats = res.data;
 
-        }, (err) => {
-          console.log(err);
-        });
+        }, ErrorService.logErorr('Error No Cats'));
     };
 
     this.addCat = function(cat) {
