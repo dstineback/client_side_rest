@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('AnimalController', ['$http', 'ErrorService', AnimalController]);
+  app.controller('AnimalController', ['$http', 'ErrorService', 'AuthService', AnimalController]);
 
   function AnimalController($http, ErrorService){
 
