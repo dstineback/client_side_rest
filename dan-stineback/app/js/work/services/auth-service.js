@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.factory('RouteService', function($http) {
+  app.factory('AuthService', function($http) {
     const service = {};
     let token;
 
