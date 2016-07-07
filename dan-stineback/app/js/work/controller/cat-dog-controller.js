@@ -3,7 +3,7 @@
 module.exports = function(app) {
   app.controller('AnimalController', ['$http', 'ErrorService', 'AuthService', AnimalController]);
 
-  function AnimalController($http, ErrorService){
+  function AnimalController($http, ErrorService, AuthService, $location){
 
     this.$http = $http;
     this.catTitle = 'Make a new Cat';
@@ -46,7 +46,7 @@ module.exports = function(app) {
     }.bind(this);
 
 // dog controller
-
+    const urlDog = 'http://localhost:3000/dogs';
     this.dogTitle = 'Make a new Dog';
     this.dogs = [];
 
@@ -58,11 +58,20 @@ module.exports = function(app) {
     };
 
     this.addDog = function(dog) {
-      $http.post('http://localhost:3000/dogs', dog)
+      $http({
+        method: 'POST',
+        data: dog,
+        headers: {
+          token: AuthService.getToken()
+        },
+        urlDog
+      })
         .then((res) => {
           this.dogs.push(res.data);
           this.newDog = null;
-        }, ErrorService.logError('Error could not make a Dog'));
+        }, ErrorService.logError('Error could not make a Dog', ()=> {
+          $location.url('/');
+        }));
     }.bind(this);
 
     this.deleteDog = function(dog) {
