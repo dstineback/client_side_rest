@@ -15,7 +15,7 @@ describe('error service tests', function() {
     expect(typeof errorService.getErrors).toBe('function');
   });
   it('should test logErorr', () => {
-    expect(typeof errorService.logErorr).toBe('function');
+    expect(typeof errorService.logError).toBe('function');
   });
   it('should test errors', () => {
     expect(Array.isArray(errorService.getErrors())).toBe(true);

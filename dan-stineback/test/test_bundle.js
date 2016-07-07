@@ -34746,7 +34746,11 @@
 	'use strict';
 
 	module.exports = function(app) {
-	  app.controller('AnimalController', function($http, ErrorService){
+	  app.controller('AnimalController', ['$http', 'ErrorService', AnimalController]);
+
+	  function AnimalController($http, ErrorService){
+
+	    this.$http = $http;
 	    this.catTitle = 'Make a new Cat';
 	    // this.$http = $http;
 	    this.cats = [];
@@ -34756,7 +34760,7 @@
 	        .then((res) => {
 	          this.cats = res.data;
 
-	        }, ErrorService.logErorr('Error No Cats'));
+	        }, ErrorService.logError('Error No Cats'));
 	    };
 
 	    this.addCat = function(cat) {
@@ -34764,7 +34768,7 @@
 	        .then((res) => {
 	          this.cats.push(res.data);
 	          this.cat = null;
-	        }, ErrorService.logErorr('Error could not make a Cat'));
+	        }, ErrorService.logError('Error could not make a Cat'));
 	    }.bind(this);
 
 	    this.deleteCat = function(cat) {
@@ -34803,7 +34807,7 @@
 	        .then((res) => {
 	          this.dogs.push(res.data);
 	          this.newDog = null;
-	        }, ErrorService.logError('Erro could not make a Dog'));
+	        }, ErrorService.logError('Error could not make a Dog'));
 	    }.bind(this);
 
 	    this.deleteDog = function(dog) {
@@ -34811,7 +34815,7 @@
 	        .then(() => {
 	          let index = this.dogs.indexOf(dog);
 	          this.dogs.splice(index, 1);
-	        }, ErrorService.logError('Erro could not delete Dog'));
+	        }, ErrorService.logError('Error could not delete Dog'));
 	    }.bind(this);
 
 
@@ -34823,10 +34827,10 @@
 	          this.dogs = this.dogs.map(n => {
 	            return n._id === dog._id ? dog : n;
 	          });
-	        }, ErrorService.logError('Erro could not update Dog'));
+	        }, ErrorService.logError('Error could not update Dog'));
 	    }.bind(this);
 
-	  });
+	  }
 	};
 
 
@@ -34940,7 +34944,7 @@
 	    const errors = [];
 	    const service = {};
 
-	    service.logErorr = function(message) {
+	    service.logError = function(message) {
 	      return function(err) {
 	        errors.push(message);
 	        console.log(err);
@@ -35022,7 +35026,7 @@
 	    expect(typeof errorService.getErrors).toBe('function');
 	  });
 	  it('should test logErorr', () => {
-	    expect(typeof errorService.logErorr).toBe('function');
+	    expect(typeof errorService.logError).toBe('function');
 	  });
 	  it('should test errors', () => {
 	    expect(Array.isArray(errorService.getErrors())).toBe(true);
