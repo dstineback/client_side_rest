@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('AnimalController', ['$http', 'ErrorService', 'AuthService', AnimalController]);
+  app.controller('AnimalController', ['$http', 'ErrorService', 'AuthService','$location', AnimalController]);
 
   function AnimalController($http, ErrorService, AuthService, $location){
 
@@ -9,6 +9,7 @@ module.exports = function(app) {
     this.catTitle = 'Make a new Cat';
     // this.$http = $http;
     this.cats = [];
+    const urlCat = 'http://localhost:3000/cats/';
 
     this.getCats = function() {
       $http.get('http://localhost:3000/cats')
@@ -19,36 +20,67 @@ module.exports = function(app) {
     };
 
     this.addCat = function(cat) {
-      $http.post('http://localhost:3000/cats', cat)
+      $http({
+        method: 'POST',
+        data: cat,
+        headers: {
+          token: AuthService.getToken()
+        },
+        url: urlCat
+      })
         .then((res) => {
           this.cats.push(res.data);
           this.cat = null;
-        }, ErrorService.logError('Error could not make a Cat'));
+        }, (err) => {
+          $location.url('/signin');
+          console.log(err);
+        });
     }.bind(this);
 
     this.deleteCat = function(cat) {
-      $http.delete('http://localhost:3000/cats/' + cat._id)
+      $http({
+        method: 'DELETE',
+        data: cat,
+        headers: {
+          token: AuthService.getToken()
+        },
+        url: 'http://localhost:3000/cats/' + cat._id
+      })
         .then(() => {
           let index = this.cats.indexOf(cat);
           this.cats.splice(index, 1);
-        }, ErrorService.logError('Error Could not Delete Cat'));
+        }, (err) => {
+          $location.url('/signin');
+          console.log(err);
+        });
     }.bind(this);
 
     this.updateCat = function(cat) {
       // cat.name = updatedCat.name;
 
-      $http.put('http://localhost:3000/cats', cat)
+      $http({
+        method: 'PUT',
+        data: cat,
+        headers: {
+          token: AuthService.getToken()
+        },
+        url: urlCat
+      })
         .then(() => {
           this.cats = this.cats.map(n => {
             return n._id === cat._id ? cat : n;
           });
-        }, ErrorService.logError('Error could not update Cat'));
+        }, (err) => {
+          $location.url('/signin');
+          console.log(err);
+        });
     }.bind(this);
 
 // dog controller
-    const urlDog = 'http://localhost:3000/dogs';
+    const urlDog = 'http://localhost:3000/dogs/';
     this.dogTitle = 'Make a new Dog';
     this.dogs = [];
+
 
     this.getDogs = function() {
       $http.get('http://localhost:3000/dogs')
@@ -64,53 +96,96 @@ module.exports = function(app) {
         headers: {
           token: AuthService.getToken()
         },
-        urlDog
+        url: urlDog
       })
         .then((res) => {
           this.dogs.push(res.data);
           this.newDog = null;
-        }, ErrorService.logError('Error could not make a Dog', ()=> {
-          $location.url('/');
-        }));
+        }, (err) => {
+          $location.url('/signin');
+          console.log(err);
+        });
     }.bind(this);
 
     this.deleteDog = function(dog) {
-      $http.delete('http://localhost:3000/dogs/' + dog._id)
+      $http({
+        method: 'DELETE',
+        data: dog,
+        headers: {
+          token: AuthService.getToken()
+        },
+        url: urlDog + dog._id
+      })
         .then(() => {
           let index = this.dogs.indexOf(dog);
           this.dogs.splice(index, 1);
-        }, ErrorService.logError('Error could not delete Dog'));
+        }, (err) => {
+          $location.url('/signin');
+          console.log(err);
+        });
     }.bind(this);
 
 
     this.updateDog = function(dog) {
       // dog.name = updatedDog.name;
 
-      $http.put('http://localhost:3000/dogs', dog)
+      $http({
+        method: 'PUT',
+        data: dog,
+        headers: {
+          token: AuthService.getToken()
+        },
+        url: urlDog
+      })
         .then(() => {
           this.dogs = this.dogs.map(n => {
             return n._id === dog._id ? dog : n;
           });
-        }, ErrorService.logError('Error could not update Dog'));
+        }, (err) => {
+          $location.url('/signin');
+          console.log(err);
+        });
     }.bind(this);
-
   }
 
   app.controller('SigninController', function($location, AuthService) {
+
     this.goHome = function() {
-      $location.url('/');
+      $location.url('/cats');
+    };
+    this.goLogIn = function() {
+      $location.url('/signin');
+    };
+    this.goSignIn = function() {
+      $location.url('/signup');
     };
     this.signUp = function(user) {
       AuthService.signUp(user)
       .then((res) => {
         console.log(res, 'back in controller');
+        $location.path('/cats');
       });
     };
     this.signIn = function(user) {
       AuthService.signIn(user)
       .then((res)=>{
         console.log(res);
+        $location.path('/cats');
+      })
+      .catch((err) =>{
+        console.log(err);
+        $location.path('/signup');
       });
+    };
+    this.signOut = function() {
+      AuthService.signOut()
+      .then((res) =>{
+        console.log(res);
+        $location.path('/signin');
+      })
+        .catch((err)=>{
+          console.log(err);
+        });
     };
   });
 };
