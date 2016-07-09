@@ -1,0 +1,20 @@
+<main>
+
+  <div ng-controller="SigninController as signinctrl">
+  <button ng-click="signinctrl.goSignUp()">No Account, Go Create One</button>
+  <button ng-click="signinctrl.goSignIn()">Have an Accoutn, Go Sign In</button>
+  <button ng-click="signinctrl.goSignOut()">Log out</button>
+</div>
+
+  <section ng-controller="AnimalController as catsctrl" ng-init="catsctrl.getCats()">
+    <h1>{{catsctrl.catTitle}}</h1>
+    <cat-list cats="catsctrl.cats"></cat-list>
+    <new-animal-form type="new" animal="{}" species="cats" ></new-animal-form>
+  </section>
+
+  <section ng-controller="AnimalController as dogsctrl" ng-init="dogsctrl.getDogs()">
+  <h1>{{dogsctrl.dogTitle}}</h1>
+  <dog-list dogs="dogsctrl.dogs"></dog-list>
+  <new-animal-form type="new" animal="{}" species="dogs"></new-animal-form>
+  </section>
+</main>
