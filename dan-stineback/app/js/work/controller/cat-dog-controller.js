@@ -150,20 +150,27 @@ module.exports = function(app) {
 
   app.controller('SigninController', function($location, AuthService) {
 
-    this.goHome = function() {
-      $location.url('/cats');
+    this.goSignOut = function() {
+      $location.path('/signout');
     };
-    this.goLogIn = function() {
-      $location.url('/signin');
+    this.goHome = function() {
+      $location.path('/cats');
     };
     this.goSignIn = function() {
-      $location.url('/signup');
+      $location.path('/signin');
+    };
+    this.goSignUp = function() {
+      $location.path('/signup');
     };
     this.signUp = function(user) {
       AuthService.signUp(user)
       .then((res) => {
         console.log(res, 'back in controller');
         $location.path('/cats');
+      })
+      .catch((err)=>{
+        alert('User already exist');
+        console.log(err);
       });
     };
     this.signIn = function(user) {
@@ -173,6 +180,7 @@ module.exports = function(app) {
         $location.path('/cats');
       })
       .catch((err) =>{
+        alert('Need to create an account');
         console.log(err);
         $location.path('/signup');
       });

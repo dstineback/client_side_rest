@@ -27,13 +27,13 @@ app.config(function($routeProvider) {
     controller: 'AnimalController',
     controllerAs: 'dogsctrl'
   })
-  .when('/signin', {
-    templateUrl:'./templates/animal/signin.html',
+  .when('/signout', {
+    templateUrl: './templates/animal/signout.html',
     controller: 'SigninController',
     controllerAs: 'signinctrl'
   })
-  .when('/signout', {
-    templateUrl: './templates/animal/signout.html',
+  .when('/signin', {
+    templateUrl:'./templates/animal/signin.html',
     controller: 'SigninController',
     controllerAs: 'signinctrl'
   });

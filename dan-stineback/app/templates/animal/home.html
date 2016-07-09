@@ -1,4 +1,11 @@
 <main>
+
+  <div ng-controller="SigninController as signinctrl">
+  <button ng-click="signinctrl.goSignUp()">No Account, Go Create One</button>
+  <button ng-click="signinctrl.goSignIn()">Have an Accoutn, Go Sign In</button>
+  <button ng-click="signinctrl.goSignOut()">Log out</button>
+</div>
+
   <section ng-controller="AnimalController as catsctrl" ng-init="catsctrl.getCats()">
     <h1>{{catsctrl.catTitle}}</h1>
     <cat-list cats="catsctrl.cats"></cat-list>
